@@ -7,7 +7,7 @@
     <artifactId>movies-portal</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>porta.movies.repository</groupId>
+  <groupId>portal.movies.repository</groupId>
   <artifactId>repository</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>

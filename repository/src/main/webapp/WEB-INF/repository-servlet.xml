@@ -25,7 +25,7 @@
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>classpath:messages</value>
+                <value>messages</value>
             </list>
         </property>
         <property name="defaultEncoding" value="UTF-8"/>
@@ -33,8 +33,6 @@
     </bean>
 
     <mvc:annotation-driven/>
-
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
 
     <bean id="Settings" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="location" value="classpath:setting.properties"/>
@@ -47,8 +45,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <context:component-scan base-package="com.butchjgo.web"/>
-
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -59,7 +55,7 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.butchjgo.entity" />
+        <property name="packagesToScan" value="portal.movies.repository.entity" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
@@ -78,7 +74,7 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <jpa:repositories base-package="com.butchjgo.repository"/>
+    <jpa:repositories base-package="portal.movies.repository.jpa"/>
 
 
 </beans>
