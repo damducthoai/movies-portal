@@ -10,7 +10,7 @@
   <groupId>portal.movies.common</groupId>
   <artifactId>common</artifactId>
   <version>1.0</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <name>Spring Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
