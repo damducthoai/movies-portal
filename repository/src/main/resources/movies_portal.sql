@@ -64,6 +64,29 @@ create table posts(
     primary key (post_id)
 );
 
+drop table if exists rating;
+create table rating(
+	rate_id bigint(20),
+    rate_size int(11),
+    post_id bigint(20),
+    user_id bigint(20),
+    client_name varchar(255),
+    client_email varchar(255),
+    client_ip varchar(255),
+    primary key(rate_id),
+    foreign key (post_id) references posts(post_id),
+    foreign key (user_id) references users(user_id)
+);
+
+drop table if exists complains;
+create table conpains(
+	complain_id bigint(20),
+    complain_content text,
+    complain_type int(11),
+    compaint_reference_id bigint(20),
+    primary key (complain_id)
+);
+
 drop table if exists categories;
 create table categories(
 	category_id bigint(20) auto_increment,
