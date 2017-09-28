@@ -6,13 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TagServiceImpl implements TagService {
-    private static TagServiceImpl ourInstance = new TagServiceImpl();
 
-    private TagServiceImpl() {
-    }
-
-    public static TagServiceImpl getInstance() {
-        return ourInstance;
+    public TagServiceImpl() {
     }
 
     @Override

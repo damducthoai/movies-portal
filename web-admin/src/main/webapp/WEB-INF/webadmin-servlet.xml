@@ -33,7 +33,12 @@
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
 
     <bean id="Settings" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="location" value="classpath:setting.properties"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:host.properties</value>
+                <value>classpath*:setting.properties</value>
+            </list>
+        </property>
         <property name="ignoreResourceNotFound" value="false"/>
         <property name="ignoreUnresolvablePlaceholders" value="false"/>
     </bean>
@@ -47,4 +52,36 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="${upload.max.size}"/>
     </bean>
+
+    <bean id="biz" class="portal.movies.common.servies.impl.Biz">
+        <property name="tagService">
+            <bean class="portal.movies.common.servies.impl.TagServiceImpl"/>
+        </property>
+        <property name="fileManager" ref="fileManager"/>
+    </bean>
+
+    <bean id="fileManager" class="portal.movies.common.servies.impl.FileManagerImpl">
+        <property name="videoHost" value="localhost"/>
+        <property name="photoHost" value="localhost"/>
+        <property name="subHost" value="localhost"/>
+        <property name="attachHost" value="localhost"/>
+        <property name="ftpClient">
+            <bean class="org.apache.commons.net.ftp.FTPClient"/>
+        </property>
+        <property name="videoDir" value="${dir.host.video}"/>
+        <property name="photoDir" value="${dir.host.photo}"/>
+        <property name="subDir" value="${dir.host.subtitle}"/>
+        <property name="attachDir" value="${dir.host.attach}"/>
+        <property name="videoUser" value="${user.host.video}"/>
+        <property name="videoPasswd" value="${pwd.host.video}"/>
+        <property name="photoUser" value="${user.host.photo}"/>
+        <property name="photoPasswd" value="${pwd.host.photo}"/>
+        <property name="subUser" value="${user.host.subtitle}"/>
+        <property name="subPasswd" value="${pwd.host.subtitle}"/>
+        <property name="attachUser" value="${user.host.attach}"/>
+        <property name="attachPasswd" value="${pwd.host.attach}"/>
+
+    </bean>
+    <bean id="ftpClient" class="org.apache.commons.net.ftp.FTPClient"/>
+
 </beans>
