@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TagService {
     /**
-     * @param input string sperate by comma,
+     * @param input string seperated by comma,
      * @return list string
      * @author root
      */

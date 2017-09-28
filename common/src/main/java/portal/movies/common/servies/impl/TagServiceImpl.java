@@ -1,4 +1,6 @@
-package portal.movies.common.servies;
+package portal.movies.common.servies.impl;
+
+import portal.movies.common.servies.TagService;
 
 import java.util.Arrays;
 import java.util.List;
