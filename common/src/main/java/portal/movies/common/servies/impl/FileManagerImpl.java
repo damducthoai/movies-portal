@@ -47,10 +47,12 @@ public class FileManagerImpl implements FileManager {
             reply = ftpClient.getReplyCode();
             status = true;
 
+            // check if host available
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftpClient.disconnect();
                 throw new Exception("FTP not available");
             }
+            // login to remote ftp server
             ftpClient.login(username, password);
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             ftpClient.enterLocalPassiveMode();
@@ -59,12 +61,19 @@ public class FileManagerImpl implements FileManager {
 
             ftpClient.storeFile(uploadDir + file.getName(), inputStream);
 
+            inputStream.close();
+
+            boolean deleted = file.delete();
+
         } catch (IOException e) {
+            //
             e.printStackTrace();
         } catch (Exception e) {
+            //
             e.printStackTrace();
         } finally {
             try {
+                // logout and close connection
                 if (ftpClient.isConnected()) {
                     ftpClient.logout();
                     ftpClient.disconnect();

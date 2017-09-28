@@ -6,13 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import portal.movies.common.File;
 import portal.movies.common.servies.IBiz;
 import portal.movies.repository.entity.FileEntity;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 @Controller
 @RequestMapping(path = "files")
@@ -23,9 +19,6 @@ public class FileController {
 
     @Autowired
     IBiz biz;
-
-   /* @Autowired
-    FTPClient ftp;*/
 
     @GetMapping
     String getUploadUI(Model model) {
@@ -39,49 +32,26 @@ public class FileController {
     @PostMapping
     String processUpload(@ModelAttribute("file") FileEntity fileEntity,
                          @RequestParam(name = "tags") String tags,
-                         @RequestParam(name = "uploadFile") MultipartFile file) {
-        try {
-            byte[] data = file.getBytes();
-
-            File serverFile = new File(String.format("%s/%s", uploadDir, file.getOriginalFilename()));
-
-            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(serverFile));
-
-            outputStream.write(data);
-
-            biz.upload2AttatchRepo(serverFile);
-
-            /*ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
-
-            int reply;
-            ftp.connect("localhost");
-            reply = ftp.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply)) {
-                ftp.disconnect();
-                //throw new Exception("Exception in connecting to FTP Server");
-            }
-
-            ftp.login("admin", "admin");
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            ftp.enterLocalPassiveMode();
-
-            FileInputStream inputStream = new FileInputStream(serverFile);
-
-            this.ftp.storeFile("/abc/" + "test", inputStream);
-
-            if (this.ftp.isConnected())
-                try {
-                    ftp.logout();
-                    ftp.disconnect();
-                } catch (IOException f) {
-                    f.printStackTrace();
-                    // do nothing as file is already saved to server
-                }*/
-
-            outputStream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+                         @RequestParam(name = "uploadFile") MultipartFile file,
+                         @RequestParam(value = "fileType", required = true) Integer type) {
+        String fileName = biz.httpUpload(file);
+        String filePath = String.format("%s/%s", uploadDir, fileName);
+        java.io.File upload = new java.io.File(filePath);
+        switch (type) {
+            case File.ATTACH:
+                biz.upload2AttatchRepo(upload);
+                break;
+            case File.PHOTO:
+                biz.upload2PhotoRepo(upload);
+                break;
+            case File.VIDEO:
+                biz.upload2VideoRepo(upload);
+                break;
+            case File.SUBTITLE:
+                biz.upload2SubtitleRepo(upload);
+                break;
+            default:
+                break;
         }
         return "upload_success";
     }

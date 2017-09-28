@@ -58,13 +58,19 @@
             <bean class="portal.movies.common.servies.impl.TagServiceImpl"/>
         </property>
         <property name="fileManager" ref="fileManager"/>
+        <property name="uploadService">
+            <bean class="portal.movies.common.servies.impl.UploadServiceImpl">
+                <property name="uploadDir" value="${upload.dir}"/>
+            </bean>
+        </property>
+
     </bean>
 
     <bean id="fileManager" class="portal.movies.common.servies.impl.FileManagerImpl">
-        <property name="videoHost" value="localhost"/>
-        <property name="photoHost" value="localhost"/>
-        <property name="subHost" value="localhost"/>
-        <property name="attachHost" value="localhost"/>
+        <property name="videoHost" value="${host.video}"/>
+        <property name="photoHost" value="${host.photo}"/>
+        <property name="subHost" value="${host.subtitle}"/>
+        <property name="attachHost" value="${host.attach}"/>
         <property name="ftpClient">
             <bean class="org.apache.commons.net.ftp.FTPClient"/>
         </property>
@@ -80,8 +86,5 @@
         <property name="subPasswd" value="${pwd.host.subtitle}"/>
         <property name="attachUser" value="${user.host.attach}"/>
         <property name="attachPasswd" value="${pwd.host.attach}"/>
-
     </bean>
-    <bean id="ftpClient" class="org.apache.commons.net.ftp.FTPClient"/>
-
 </beans>

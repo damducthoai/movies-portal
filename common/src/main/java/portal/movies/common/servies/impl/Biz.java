@@ -1,8 +1,10 @@
 package portal.movies.common.servies.impl;
 
+import org.springframework.web.multipart.MultipartFile;
 import portal.movies.common.servies.FileManager;
 import portal.movies.common.servies.IBiz;
 import portal.movies.common.servies.TagService;
+import portal.movies.common.servies.UploadService;
 
 import java.io.File;
 import java.util.List;
@@ -12,6 +14,8 @@ public class Biz implements IBiz {
     private TagService tagService;
 
     private FileManager fileManager;
+
+    private UploadService uploadService;
 
     @Override
     public List<String> Text2Tags(String input) {
@@ -44,5 +48,14 @@ public class Biz implements IBiz {
 
     public void setFileManager(FileManager fileManager) {
         this.fileManager = fileManager;
+    }
+
+    public void setUploadService(UploadService uploadService) {
+        this.uploadService = uploadService;
+    }
+
+    @Override
+    public String httpUpload(MultipartFile multipartFile) {
+        return uploadService.httpUpload(multipartFile);
     }
 }

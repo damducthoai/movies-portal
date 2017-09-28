@@ -14,10 +14,8 @@
     <sf:select path="fileType" items="${fileTypes}"/><br>
     <sf:label path="fileDescription">Description: </sf:label><br>
     <sf:textarea path="fileDescription"/><br>
-    <%--<sf:label path="tags">Tags: </sf:label><br>--%>
     <label>Tags: </label>
     <textarea name="tags"></textarea>
-    <%--<sf:label path="uploadFile">File: </sf:label>--%>
     <label>File: </label>
     <input type="file" name="uploadFile"/>
     <sf:hidden path="thumnailId"/><br>
