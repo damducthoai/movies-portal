@@ -83,11 +83,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>portal.movies.repository</groupId>
             <artifactId>repository</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
         <dependency>
             <groupId>commons-net</groupId>

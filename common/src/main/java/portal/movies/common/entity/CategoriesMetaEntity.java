@@ -1,15 +1,16 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class CategoriesMetaEntityPK implements Serializable {
+@Entity
+@Table(name = "categories_meta", schema = "movies_portal", catalog = "")
+@IdClass(CategoriesMetaEntityPK.class)
+public class CategoriesMetaEntity {
     private long postId;
     private long categoryId;
 
-    @Column(name = "post_id", nullable = false)
     @Id
+    @Column(name = "post_id", nullable = false)
     public long getPostId() {
         return postId;
     }
@@ -18,8 +19,8 @@ public class CategoriesMetaEntityPK implements Serializable {
         this.postId = postId;
     }
 
-    @Column(name = "category_id", nullable = false)
     @Id
+    @Column(name = "category_id", nullable = false)
     public long getCategoryId() {
         return categoryId;
     }
@@ -33,7 +34,7 @@ public class CategoriesMetaEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CategoriesMetaEntityPK that = (CategoriesMetaEntityPK) o;
+        CategoriesMetaEntity that = (CategoriesMetaEntity) o;
 
         if (postId != that.postId) return false;
         if (categoryId != that.categoryId) return false;

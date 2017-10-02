@@ -1,15 +1,17 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class TagsMetaEntityPK implements Serializable {
+@Entity
+@Table(name = "tags_meta", schema = "movies_portal", catalog = "")
+@IdClass(TagsMetaEntityPK.class)
+public class TagsMetaEntity {
     private long tagId;
+    private Long refencesId;
     private int metaType;
 
-    @Column(name = "tag_id", nullable = false)
     @Id
+    @Column(name = "tag_id", nullable = false)
     public long getTagId() {
         return tagId;
     }
@@ -18,8 +20,18 @@ public class TagsMetaEntityPK implements Serializable {
         this.tagId = tagId;
     }
 
-    @Column(name = "meta_type", nullable = false)
+    @Basic
+    @Column(name = "refences_id", nullable = true)
+    public Long getRefencesId() {
+        return refencesId;
+    }
+
+    public void setRefencesId(Long refencesId) {
+        this.refencesId = refencesId;
+    }
+
     @Id
+    @Column(name = "meta_type", nullable = false)
     public int getMetaType() {
         return metaType;
     }
@@ -33,10 +45,11 @@ public class TagsMetaEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TagsMetaEntityPK that = (TagsMetaEntityPK) o;
+        TagsMetaEntity that = (TagsMetaEntity) o;
 
         if (tagId != that.tagId) return false;
         if (metaType != that.metaType) return false;
+        if (refencesId != null ? !refencesId.equals(that.refencesId) : that.refencesId != null) return false;
 
         return true;
     }
@@ -44,6 +57,7 @@ public class TagsMetaEntityPK implements Serializable {
     @Override
     public int hashCode() {
         int result = (int) (tagId ^ (tagId >>> 32));
+        result = 31 * result + (refencesId != null ? refencesId.hashCode() : 0);
         result = 31 * result + metaType;
         return result;
     }

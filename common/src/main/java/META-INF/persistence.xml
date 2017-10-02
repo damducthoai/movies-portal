@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="MoviesPU">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>portal.movies.common.entity.ActorsEntity</class>
+        <class>portal.movies.common.entity.AuthoritiesEntity</class>
+        <class>portal.movies.common.entity.CategoriesEntity</class>
+        <class>portal.movies.common.entity.CategoriesMetaEntity</class>
+        <class>portal.movies.common.entity.ConpainsEntity</class>
+        <class>portal.movies.common.entity.FilesEntity</class>
+        <class>portal.movies.common.entity.PostActorMetaEntity</class>
+        <class>portal.movies.common.entity.PostVideoMetaEntity</class>
+        <class>portal.movies.common.entity.PostsEntity</class>
+        <class>portal.movies.common.entity.RatingEntity</class>
+        <class>portal.movies.common.entity.TagsEntity</class>
+        <class>portal.movies.common.entity.TagsMetaEntity</class>
+        <class>portal.movies.common.entity.TrailersEntity</class>
+        <class>portal.movies.common.entity.UrlMetaEntity</class>
+        <class>portal.movies.common.entity.UsersEntity</class>
+        <class>portal.movies.common.entity.VideoSubtitleMetaEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/movies_portal"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="toor"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

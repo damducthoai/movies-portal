@@ -1,10 +1,10 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "files", schema = "movies_portal", catalog = "")
-public class FileEntity {
+public class FilesEntity {
     private long fileId;
     private String fileTitle;
     private Integer fileType;
@@ -110,7 +110,7 @@ public class FileEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        FileEntity that = (FileEntity) o;
+        FilesEntity that = (FilesEntity) o;
 
         if (fileId != that.fileId) return false;
         if (fileTitle != null ? !fileTitle.equals(that.fileTitle) : that.fileTitle != null) return false;

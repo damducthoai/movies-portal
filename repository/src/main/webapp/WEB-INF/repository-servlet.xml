@@ -55,7 +55,7 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="portal.movies.repository.entity" />
+        <property name="packagesToScan" value="portal.movies.common.entity" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
@@ -74,7 +74,7 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <jpa:repositories base-package="portal.movies.repository.jpa"/>
+    <jpa:repositories base-package="portal.movies.common.jpa"/>
 
 
 </beans>

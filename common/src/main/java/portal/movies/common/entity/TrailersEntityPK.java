@@ -1,4 +1,4 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class TrailersEntityPK implements Serializable {
     private long postId;
-    private long videoId;
+    private long fileVideoId;
 
     @Column(name = "post_id", nullable = false)
     @Id
@@ -18,14 +18,14 @@ public class TrailersEntityPK implements Serializable {
         this.postId = postId;
     }
 
-    @Column(name = "video_id", nullable = false)
+    @Column(name = "file_video_id", nullable = false)
     @Id
-    public long getVideoId() {
-        return videoId;
+    public long getFileVideoId() {
+        return fileVideoId;
     }
 
-    public void setVideoId(long videoId) {
-        this.videoId = videoId;
+    public void setFileVideoId(long fileVideoId) {
+        this.fileVideoId = fileVideoId;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TrailersEntityPK implements Serializable {
         TrailersEntityPK that = (TrailersEntityPK) o;
 
         if (postId != that.postId) return false;
-        if (videoId != that.videoId) return false;
+        if (fileVideoId != that.fileVideoId) return false;
 
         return true;
     }
@@ -44,7 +44,7 @@ public class TrailersEntityPK implements Serializable {
     @Override
     public int hashCode() {
         int result = (int) (postId ^ (postId >>> 32));
-        result = 31 * result + (int) (videoId ^ (videoId >>> 32));
+        result = 31 * result + (int) (fileVideoId ^ (fileVideoId >>> 32));
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
 import javax.persistence.*;
 
@@ -7,8 +7,9 @@ import javax.persistence.*;
 @IdClass(PostVideoMetaEntityPK.class)
 public class PostVideoMetaEntity {
     private long postId;
-    private long videoId;
+    private long fileVideoId;
     private long partNum;
+    private Integer videoQuality;
 
     @Id
     @Column(name = "post_id", nullable = false)
@@ -21,13 +22,13 @@ public class PostVideoMetaEntity {
     }
 
     @Id
-    @Column(name = "video_id", nullable = false)
-    public long getVideoId() {
-        return videoId;
+    @Column(name = "file_video_id", nullable = false)
+    public long getFileVideoId() {
+        return fileVideoId;
     }
 
-    public void setVideoId(long videoId) {
-        this.videoId = videoId;
+    public void setFileVideoId(long fileVideoId) {
+        this.fileVideoId = fileVideoId;
     }
 
     @Id
@@ -40,6 +41,16 @@ public class PostVideoMetaEntity {
         this.partNum = partNum;
     }
 
+    @Basic
+    @Column(name = "video_quality", nullable = true)
+    public Integer getVideoQuality() {
+        return videoQuality;
+    }
+
+    public void setVideoQuality(Integer videoQuality) {
+        this.videoQuality = videoQuality;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,8 +59,9 @@ public class PostVideoMetaEntity {
         PostVideoMetaEntity that = (PostVideoMetaEntity) o;
 
         if (postId != that.postId) return false;
-        if (videoId != that.videoId) return false;
+        if (fileVideoId != that.fileVideoId) return false;
         if (partNum != that.partNum) return false;
+        if (videoQuality != null ? !videoQuality.equals(that.videoQuality) : that.videoQuality != null) return false;
 
         return true;
     }
@@ -57,8 +69,9 @@ public class PostVideoMetaEntity {
     @Override
     public int hashCode() {
         int result = (int) (postId ^ (postId >>> 32));
-        result = 31 * result + (int) (videoId ^ (videoId >>> 32));
+        result = 31 * result + (int) (fileVideoId ^ (fileVideoId >>> 32));
         result = 31 * result + (int) (partNum ^ (partNum >>> 32));
+        result = 31 * result + (videoQuality != null ? videoQuality.hashCode() : 0);
         return result;
     }
 }

@@ -1,13 +1,13 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "categories_meta", schema = "movies_portal", catalog = "")
-@IdClass(CategoriesMetaEntityPK.class)
-public class CategoriesMetaEntity {
+@Table(name = "post_actor_meta", schema = "movies_portal", catalog = "")
+@IdClass(PostActorMetaEntityPK.class)
+public class PostActorMetaEntity {
     private long postId;
-    private long categoryId;
+    private long actorId;
 
     @Id
     @Column(name = "post_id", nullable = false)
@@ -20,13 +20,13 @@ public class CategoriesMetaEntity {
     }
 
     @Id
-    @Column(name = "category_id", nullable = false)
-    public long getCategoryId() {
-        return categoryId;
+    @Column(name = "actor_id", nullable = false)
+    public long getActorId() {
+        return actorId;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setActorId(long actorId) {
+        this.actorId = actorId;
     }
 
     @Override
@@ -34,10 +34,10 @@ public class CategoriesMetaEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CategoriesMetaEntity that = (CategoriesMetaEntity) o;
+        PostActorMetaEntity that = (PostActorMetaEntity) o;
 
         if (postId != that.postId) return false;
-        if (categoryId != that.categoryId) return false;
+        if (actorId != that.actorId) return false;
 
         return true;
     }
@@ -45,7 +45,7 @@ public class CategoriesMetaEntity {
     @Override
     public int hashCode() {
         int result = (int) (postId ^ (postId >>> 32));
-        result = 31 * result + (int) (categoryId ^ (categoryId >>> 32));
+        result = 31 * result + (int) (actorId ^ (actorId >>> 32));
         return result;
     }
 }

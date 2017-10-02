@@ -1,4 +1,4 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @IdClass(TrailersEntityPK.class)
 public class TrailersEntity {
     private long postId;
-    private long videoId;
+    private long fileVideoId;
 
     @Id
     @Column(name = "post_id", nullable = false)
@@ -20,13 +20,13 @@ public class TrailersEntity {
     }
 
     @Id
-    @Column(name = "video_id", nullable = false)
-    public long getVideoId() {
-        return videoId;
+    @Column(name = "file_video_id", nullable = false)
+    public long getFileVideoId() {
+        return fileVideoId;
     }
 
-    public void setVideoId(long videoId) {
-        this.videoId = videoId;
+    public void setFileVideoId(long fileVideoId) {
+        this.fileVideoId = fileVideoId;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TrailersEntity {
         TrailersEntity that = (TrailersEntity) o;
 
         if (postId != that.postId) return false;
-        if (videoId != that.videoId) return false;
+        if (fileVideoId != that.fileVideoId) return false;
 
         return true;
     }
@@ -45,7 +45,7 @@ public class TrailersEntity {
     @Override
     public int hashCode() {
         int result = (int) (postId ^ (postId >>> 32));
-        result = 31 * result + (int) (videoId ^ (videoId >>> 32));
+        result = 31 * result + (int) (fileVideoId ^ (fileVideoId >>> 32));
         return result;
     }
 }

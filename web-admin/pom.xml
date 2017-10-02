@@ -84,11 +84,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>portal.movies.repository</groupId>
             <artifactId>repository</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>portal.movies.common</groupId>
             <artifactId>common</artifactId>

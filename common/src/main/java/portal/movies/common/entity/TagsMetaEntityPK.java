@@ -1,16 +1,15 @@
-package portal.movies.repository.entity;
+package portal.movies.common.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "tags_meta", schema = "movies_portal", catalog = "")
-@IdClass(TagsMetaEntityPK.class)
-public class TagsMetaEntity {
+public class TagsMetaEntityPK implements Serializable {
     private long tagId;
     private int metaType;
 
-    @Id
     @Column(name = "tag_id", nullable = false)
+    @Id
     public long getTagId() {
         return tagId;
     }
@@ -19,8 +18,8 @@ public class TagsMetaEntity {
         this.tagId = tagId;
     }
 
-    @Id
     @Column(name = "meta_type", nullable = false)
+    @Id
     public int getMetaType() {
         return metaType;
     }
@@ -34,7 +33,7 @@ public class TagsMetaEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TagsMetaEntity that = (TagsMetaEntity) o;
+        TagsMetaEntityPK that = (TagsMetaEntityPK) o;
 
         if (tagId != that.tagId) return false;
         if (metaType != that.metaType) return false;

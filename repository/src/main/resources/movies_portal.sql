@@ -111,6 +111,7 @@ create table tags (
 drop table if exists tags_meta;
 create table tags_meta(
 	tag_id bigint(20),
+    refences_id bigint(20),
     meta_type int(11), -- 1: photo, 2: video, 3: subtitle, 4: post, 5: actor, 6: trailer
     primary key (tag_id, meta_type),
     foreign key (tag_id) references tags(tag_id)
@@ -127,9 +128,10 @@ create table files(
     modified_by bigint(20),
     thumnail_id bigint(20),
     file_status int(1),
-    primary key (file_id)
+    primary key (file_id),
+    foreign key (thumnail_id) references files(file_id)
 );
-
+insert into files(file_title,file_type) values ("abc",1);
 
 drop table if exists actors;
 create table actors(
@@ -158,6 +160,7 @@ create table  post_video_meta(
 	post_id bigint(20),
     file_video_id bigint(20),
     part_num bigint(20),
+    video_quality int(11),
     primary key (post_id, file_video_id, part_num),
     foreign key (post_id) references posts(post_id),
     foreign key (file_video_id) references files(file_id)
@@ -176,5 +179,6 @@ create table post_actor_meta(
 	post_id bigint(20),
     actor_id bigint(20),
     foreign key (post_id) references posts(post_id),
-    foreign key (actor_id) references actors(actor_id)
+    foreign key (actor_id) references actors(actor_id),
+    primary key (post_id, actor_id)
 );
