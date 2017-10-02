@@ -1,6 +1,8 @@
 package portal.movies.common.servies.impl;
 
 import org.springframework.web.multipart.MultipartFile;
+import portal.movies.common.dao.FilesDAO;
+import portal.movies.common.entity.FilesEntity;
 import portal.movies.common.servies.FileManager;
 import portal.movies.common.servies.IBiz;
 import portal.movies.common.servies.TagService;
@@ -25,6 +27,8 @@ public class Biz implements IBiz {
     private FileManager fileManager;
 
     private UploadService uploadService;
+
+    private FilesDAO fileDAO;
 
     @Override
     public List<String> Text2Tags(String input) {
@@ -66,5 +70,29 @@ public class Biz implements IBiz {
     @Override
     public String httpUpload(MultipartFile multipartFile) {
         return uploadService.httpUpload(multipartFile);
+    }
+
+    public void setFileDAO(FilesDAO fileDAO) {
+        this.fileDAO = fileDAO;
+    }
+
+    @Override
+    public void saveFile(FilesEntity file) {
+        fileDAO.saveFile(file);
+    }
+
+    @Override
+    public void deleteFileById(long id) {
+        fileDAO.deleteFileById(id);
+    }
+
+    @Override
+    public void updateFile(FilesEntity file) {
+        fileDAO.updateFile(file);
+    }
+
+    @Override
+    public FilesEntity findFileById(long id) {
+        return fileDAO.findFileById(id);
     }
 }

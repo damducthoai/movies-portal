@@ -1,10 +1,11 @@
 package portal.movies.common.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "files", schema = "movies_portal", catalog = "")
-public class FilesEntity {
+public class FilesEntity implements Serializable {
     private long fileId;
     private String fileTitle;
     private Integer fileType;
@@ -14,6 +15,7 @@ public class FilesEntity {
     private Long modifiedBy;
     private Long thumnailId;
     private Integer fileStatus;
+    private String fileUrl;
 
     @Id
     @Column(name = "file_id", nullable = false)
@@ -105,6 +107,16 @@ public class FilesEntity {
         this.fileStatus = fileStatus;
     }
 
+    @Basic
+    @Column(name = "file_url", nullable = true, length = 255)
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,6 +134,7 @@ public class FilesEntity {
         if (modifiedBy != null ? !modifiedBy.equals(that.modifiedBy) : that.modifiedBy != null) return false;
         if (thumnailId != null ? !thumnailId.equals(that.thumnailId) : that.thumnailId != null) return false;
         if (fileStatus != null ? !fileStatus.equals(that.fileStatus) : that.fileStatus != null) return false;
+        if (fileUrl != null ? !fileUrl.equals(that.fileUrl) : that.fileUrl != null) return false;
 
         return true;
     }
@@ -137,6 +150,7 @@ public class FilesEntity {
         result = 31 * result + (modifiedBy != null ? modifiedBy.hashCode() : 0);
         result = 31 * result + (thumnailId != null ? thumnailId.hashCode() : 0);
         result = 31 * result + (fileStatus != null ? fileStatus.hashCode() : 0);
+        result = 31 * result + (fileUrl != null ? fileUrl.hashCode() : 0);
         return result;
     }
 }

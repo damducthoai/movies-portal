@@ -63,7 +63,7 @@
                 <property name="uploadDir" value="${upload.dir}"/>
             </bean>
         </property>
-
+        <property name="fileDAO" ref="filesDAO"/>
     </bean>
 
     <bean id="fileManager" class="portal.movies.common.servies.impl.FileManagerImpl">
@@ -86,5 +86,10 @@
         <property name="subPasswd" value="${pwd.host.subtitle}"/>
         <property name="attachUser" value="${user.host.attach}"/>
         <property name="attachPasswd" value="${pwd.host.attach}"/>
+    </bean>
+
+    <bean id="filesDAO" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/repository/filesDAO"/>
+        <property name="serviceInterface" value="portal.movies.common.dao.FilesDAO"/>
     </bean>
 </beans>
