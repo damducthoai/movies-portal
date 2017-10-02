@@ -53,7 +53,7 @@
         <property name="maxUploadSize" value="${upload.max.size}"/>
     </bean>
 
-    <bean id="biz" class="portal.movies.common.servies.impl.Biz">
+    <bean id="biz" class="portal.movies.common.servies.impl.Biz" factory-method="getInstance">
         <property name="tagService">
             <bean class="portal.movies.common.servies.impl.TagServiceImpl"/>
         </property>

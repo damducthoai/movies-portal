@@ -11,6 +11,15 @@ import java.util.List;
 
 public class Biz implements IBiz {
 
+    private static Biz ourInstance = new Biz();
+
+    private Biz() {
+    }
+
+    public static Biz getInstance() {
+        return ourInstance;
+    }
+
     private TagService tagService;
 
     private FileManager fileManager;
