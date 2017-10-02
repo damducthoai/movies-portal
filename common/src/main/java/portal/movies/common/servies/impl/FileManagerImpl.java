@@ -20,23 +20,31 @@ public class FileManagerImpl implements FileManager {
     String videoUser, videoPasswd, photoUser, photoPasswd, subUser, subPasswd, attachUser, attachPasswd;
 
     @Override
-    public boolean upload2VideoRepo(File file) {
-        return upload(videoHost, videoUser, videoPasswd, videoDir, file);
+    public String upload2VideoRepo(File file) {
+        upload(videoHost, videoUser, videoPasswd, videoDir, file);
+        // TODO
+        return "";
     }
 
     @Override
-    public boolean upload2PhotoRepo(File file) {
-        return upload(photoHost, photoUser, photoPasswd, photoDir, file);
+    public String upload2PhotoRepo(File file) {
+        upload(photoHost, photoUser, photoPasswd, photoDir, file);
+        // TODO
+        return "";
     }
 
     @Override
-    public boolean upload2SubtitleRepo(File file) {
-        return upload(subHost, subUser, subPasswd, subDir, file);
+    public String upload2SubtitleRepo(File file) {
+        upload(subHost, subUser, subPasswd, subDir, file);
+        // TODO
+        return "";
     }
 
     @Override
-    public boolean upload2AttatchRepo(File file) {
-        return upload(attachHost, attachUser, attachPasswd, attachDir, file);
+    public String upload2AttatchRepo(File file) {
+        upload(attachHost, attachUser, attachPasswd, attachDir, file);
+        // TODO
+        return "";
     }
 
     private boolean upload(String host, String username, String password, String uploadDir, File file) {

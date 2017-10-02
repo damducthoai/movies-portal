@@ -36,22 +36,22 @@ public class Biz implements IBiz {
     }
 
     @Override
-    public boolean upload2VideoRepo(File file) {
+    public String upload2VideoRepo(File file) {
         return fileManager.upload2VideoRepo(file);
     }
 
     @Override
-    public boolean upload2PhotoRepo(File file) {
+    public String upload2PhotoRepo(File file) {
         return fileManager.upload2PhotoRepo(file);
     }
 
     @Override
-    public boolean upload2SubtitleRepo(File file) {
+    public String upload2SubtitleRepo(File file) {
         return fileManager.upload2SubtitleRepo(file);
     }
 
     @Override
-    public boolean upload2AttatchRepo(File file) {
+    public String upload2AttatchRepo(File file) {
         return fileManager.upload2AttatchRepo(file);
     }
 

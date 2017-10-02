@@ -7,32 +7,32 @@ public interface FileManager {
      * upload file to video repository
      *
      * @param file
-     * @return success ? true : false
+     * @return success ? file url : null
      * @author root
      */
-    boolean upload2VideoRepo(File file);
+    String upload2VideoRepo(File file);
 
     /**
      * upload file to photo repository
      * @param file
-     * @return success ? true : false
+     * @return success ? file url : null
      * @author root
      */
-    boolean upload2PhotoRepo(File file);
+    String upload2PhotoRepo(File file);
 
     /**
      * upload file to subtitle repository
      * @param file
-     * @return success ? true : false
+     * @return success ? file url : null
      * @author root
      */
-    boolean upload2SubtitleRepo(File file);
+    String upload2SubtitleRepo(File file);
 
     /**
      * upload file to attach repository
      * @param file
-     * @return success ? true : false
+     * @return success ? file url : null
      * @author root
      */
-    boolean upload2AttatchRepo(File file);
+    String upload2AttatchRepo(File file);
 }
