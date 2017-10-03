@@ -119,16 +119,16 @@ create table tags_meta(
 
 drop table if exists files; -- storage information about binary media file
 create table files(
-    file_id          bigint(20) auto_increment,
-    file_title       varchar(255),
-    file_type        int(11), -- :1 photo, 2: video, 3: subtitle, 4: attatch file
-    file_description text,
-    file_name        varchar(255),
-    created_by       bigint(20),
-    modified_by      bigint(20),
-    thumnail_id      bigint(20),
-    file_status      int(1),
-    file_url         VARCHAR(255),
+  file_id          bigint(20) auto_increment,
+  file_title       varchar(255),
+  file_type        int(11), -- :1 photo, 2: video, 3: subtitle, 4: attatch file
+  file_description text,
+  file_name        varchar(255),
+  created_by       bigint(20),
+  modified_by      bigint(20),
+  thumnail_id      bigint(20),
+  file_status      int(1),
+  host_addr        VARCHAR(255),
     primary key (file_id),
     foreign key (thumnail_id) references files(file_id)
 );

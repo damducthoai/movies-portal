@@ -89,7 +89,7 @@
     </bean>
 
     <bean id="filesDAO" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-        <property name="serviceUrl" value="http://localhost:8080/repository/filesDAO"/>
+        <property name="serviceUrl" value="${url.repository.files}"/>
         <property name="serviceInterface" value="portal.movies.common.dao.FilesDAO"/>
     </bean>
 </beans>

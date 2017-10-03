@@ -15,7 +15,7 @@ public class FilesEntity implements Serializable {
     private Long modifiedBy;
     private Long thumnailId;
     private Integer fileStatus;
-    private String fileUrl;
+    private String hostAddr;
 
     @Id
     @Column(name = "file_id", nullable = false)
@@ -108,13 +108,13 @@ public class FilesEntity implements Serializable {
     }
 
     @Basic
-    @Column(name = "file_url", nullable = true, length = 255)
-    public String getFileUrl() {
-        return fileUrl;
+    @Column(name = "host_addr", nullable = true, length = 255)
+    public String getHostAddr() {
+        return hostAddr;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setHostAddr(String hostAddr) {
+        this.hostAddr = hostAddr;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class FilesEntity implements Serializable {
         if (modifiedBy != null ? !modifiedBy.equals(that.modifiedBy) : that.modifiedBy != null) return false;
         if (thumnailId != null ? !thumnailId.equals(that.thumnailId) : that.thumnailId != null) return false;
         if (fileStatus != null ? !fileStatus.equals(that.fileStatus) : that.fileStatus != null) return false;
-        if (fileUrl != null ? !fileUrl.equals(that.fileUrl) : that.fileUrl != null) return false;
+        if (hostAddr != null ? !hostAddr.equals(that.hostAddr) : that.hostAddr != null) return false;
 
         return true;
     }
@@ -150,7 +150,7 @@ public class FilesEntity implements Serializable {
         result = 31 * result + (modifiedBy != null ? modifiedBy.hashCode() : 0);
         result = 31 * result + (thumnailId != null ? thumnailId.hashCode() : 0);
         result = 31 * result + (fileStatus != null ? fileStatus.hashCode() : 0);
-        result = 31 * result + (fileUrl != null ? fileUrl.hashCode() : 0);
+        result = 31 * result + (hostAddr != null ? hostAddr.hashCode() : 0);
         return result;
     }
 }

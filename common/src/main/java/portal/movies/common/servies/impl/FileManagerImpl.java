@@ -28,28 +28,28 @@ public class FileManagerImpl implements FileManager {
     @Override
     public String upload2VideoRepo(File file) {
         boolean success = upload(videoHost, videoUser, videoPasswd, videoDir, file);
-        String result = success ? String.format(urlTemplate, videoHost, "videos", file.getName()) : null;
+        String result = success ? videoHost : null;
         return result;
     }
 
     @Override
     public String upload2PhotoRepo(File file) {
         boolean success = upload(photoHost, photoUser, photoPasswd, photoDir, file);
-        String result = success ? String.format(photoHost, videoHost, "photos", file.getName()) : null;
+        String result = success ? photoHost : null;
         return result;
     }
 
     @Override
     public String upload2SubtitleRepo(File file) {
         boolean success = upload(subHost, subUser, subPasswd, subDir, file);
-        String result = success ? String.format(subHost, videoHost, "subtitles", file.getName()) : null;
+        String result = success ? subHost : null;
         return result;
     }
 
     @Override
     public String upload2AttatchRepo(File file) {
         boolean success = upload(attachHost, attachUser, attachPasswd, attachDir, file);
-        String result = success ? String.format(urlTemplate, attachHost, "attaches", file.getName()) : null;
+        String result = success ? attachHost : null;
         return result;
     }
 
