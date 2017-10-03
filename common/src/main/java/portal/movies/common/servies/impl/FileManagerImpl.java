@@ -23,8 +23,6 @@ public class FileManagerImpl implements FileManager {
 
     String videoUser, videoPasswd, photoUser, photoPasswd, subUser, subPasswd, attachUser, attachPasswd;
 
-    String urlTemplate = "%s/%s/%s";
-
     @Override
     public String upload2VideoRepo(File file) {
         boolean success = upload(videoHost, videoUser, videoPasswd, videoDir, file);

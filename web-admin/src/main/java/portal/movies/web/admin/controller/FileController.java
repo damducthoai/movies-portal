@@ -45,21 +45,29 @@ public class FileController {
         String filePath = String.format("%s/%s", uploadDir, fileName);
         java.io.File upload = new java.io.File(filePath);
 
+        String hostInfo = null;
+
         switch (type) {
             case File.ATTACH:
-                biz.upload2AttatchRepo(upload);
+                hostInfo = biz.upload2AttatchRepo(upload);
                 break;
             case File.PHOTO:
-                biz.upload2PhotoRepo(upload);
+                hostInfo = biz.upload2PhotoRepo(upload);
                 break;
             case File.VIDEO:
-                biz.upload2VideoRepo(upload);
+                hostInfo = biz.upload2VideoRepo(upload);
                 break;
             case File.SUBTITLE:
-                biz.upload2SubtitleRepo(upload);
+                hostInfo = biz.upload2SubtitleRepo(upload);
                 break;
             default:
                 break;
+        }
+        if (hostInfo != null) {
+            fileEntity.setHostAddr(hostInfo);
+            fileEntity.setFileName(fileName);
+            fileEntity.setFileStatus(1);
+            biz.saveFile(fileEntity);
         }
         return "upload_success";
     }
