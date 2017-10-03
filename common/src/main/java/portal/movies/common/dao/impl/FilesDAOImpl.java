@@ -4,6 +4,8 @@ import portal.movies.common.dao.FilesDAO;
 import portal.movies.common.entity.FilesEntity;
 import portal.movies.common.jpa.FilesRepository;
 
+import java.util.List;
+
 public class FilesDAOImpl implements FilesDAO {
 
     private FilesRepository repository;
@@ -29,6 +31,11 @@ public class FilesDAOImpl implements FilesDAO {
     @Override
     public FilesEntity findFileById(long id) {
         return repository.findOne(id);
+    }
+
+    @Override
+    public List<FilesEntity> findAllFiles() {
+        return repository.findAll();
     }
 
     public FilesRepository getRepository() {

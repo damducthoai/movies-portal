@@ -95,4 +95,9 @@ public class Biz implements IBiz {
     public FilesEntity findFileById(long id) {
         return fileDAO.findFileById(id);
     }
+
+    @Override
+    public List<FilesEntity> findAllFiles() {
+        return fileDAO.findAllFiles();
+    }
 }

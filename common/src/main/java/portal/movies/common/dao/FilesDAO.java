@@ -2,6 +2,8 @@ package portal.movies.common.dao;
 
 import portal.movies.common.entity.FilesEntity;
 
+import java.util.List;
+
 public interface FilesDAO {
     void saveFile(FilesEntity file);
 
@@ -10,4 +12,6 @@ public interface FilesDAO {
     void updateFile(FilesEntity file);
 
     FilesEntity findFileById(long id);
+
+    List<FilesEntity> findAllFiles();
 }

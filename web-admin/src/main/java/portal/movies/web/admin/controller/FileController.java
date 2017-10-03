@@ -12,6 +12,7 @@ import portal.movies.common.entity.FilesEntity;
 import portal.movies.common.servies.IBiz;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "files")
@@ -26,13 +27,19 @@ public class FileController {
     @Autowired
     IBiz biz;
 
-    @GetMapping
+    @GetMapping()
     String getUploadUI(Model model) {
         FilesEntity fileEntity = new FilesEntity();
-        //fileEntity.setThumnailId((long) 1);
         model.addAttribute("file", fileEntity);
         model.addAttribute("fileTypes", portal.movies.common.File.TYPES);
         return "upload_ui";
+    }
+
+    @GetMapping(value = "page-{num}")
+    String getFiles(Model model, @PathVariable("num") long num) {
+        List<FilesEntity> files = biz.findAllFiles();
+        model.addAttribute("files", files);
+        return "list_file";
     }
 
     @PostMapping
