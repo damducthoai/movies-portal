@@ -3,6 +3,8 @@ package portal.movies.common.servies.impl;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import portal.movies.common.servies.FileManager;
 
 import java.io.File;
@@ -10,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class FileManagerImpl implements FileManager {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileManagerImpl.class);
 
     FTPClient ftpClient;
 
@@ -19,32 +23,34 @@ public class FileManagerImpl implements FileManager {
 
     String videoUser, videoPasswd, photoUser, photoPasswd, subUser, subPasswd, attachUser, attachPasswd;
 
+    String urlTemplate = "%s/%s/%s";
+
     @Override
     public String upload2VideoRepo(File file) {
-        upload(videoHost, videoUser, videoPasswd, videoDir, file);
-        // TODO
-        return "";
+        boolean success = upload(videoHost, videoUser, videoPasswd, videoDir, file);
+        String result = success ? String.format(urlTemplate, videoHost, "videos", file.getName()) : null;
+        return result;
     }
 
     @Override
     public String upload2PhotoRepo(File file) {
-        upload(photoHost, photoUser, photoPasswd, photoDir, file);
-        // TODO
-        return "";
+        boolean success = upload(photoHost, photoUser, photoPasswd, photoDir, file);
+        String result = success ? String.format(photoHost, videoHost, "photos", file.getName()) : null;
+        return result;
     }
 
     @Override
     public String upload2SubtitleRepo(File file) {
-        upload(subHost, subUser, subPasswd, subDir, file);
-        // TODO
-        return "";
+        boolean success = upload(subHost, subUser, subPasswd, subDir, file);
+        String result = success ? String.format(subHost, videoHost, "subtitles", file.getName()) : null;
+        return result;
     }
 
     @Override
     public String upload2AttatchRepo(File file) {
-        upload(attachHost, attachUser, attachPasswd, attachDir, file);
-        // TODO
-        return "";
+        boolean success = upload(attachHost, attachUser, attachPasswd, attachDir, file);
+        String result = success ? String.format(urlTemplate, attachHost, "attaches", file.getName()) : null;
+        return result;
     }
 
     private boolean upload(String host, String username, String password, String uploadDir, File file) {
@@ -58,6 +64,7 @@ public class FileManagerImpl implements FileManager {
             // check if host available
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftpClient.disconnect();
+                LOGGER.error("FTP not available");
                 throw new Exception("FTP not available");
             }
             // login to remote ftp server
@@ -74,10 +81,10 @@ public class FileManagerImpl implements FileManager {
             boolean deleted = file.delete();
 
         } catch (IOException e) {
-            //
+            LOGGER.error(e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
-            //
+            LOGGER.error(e.getMessage());
             e.printStackTrace();
         } finally {
             try {
