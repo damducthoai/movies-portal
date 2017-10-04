@@ -38,6 +38,22 @@ public class FilesDAOImpl implements FilesDAO {
         return repository.findAll();
     }
 
+    @Override
+    public List<FilesEntity> getFiles(long pageNum, long pageSize, int fileType) {
+        long offSet = (pageNum - 1) * pageSize; // calculate start offset
+        List<FilesEntity> result;
+
+        switch (fileType) {
+            case 0:
+                result = repository.getFiles(pageSize, offSet);
+                break;
+            default:
+                result = repository.getFiles(pageSize, offSet, fileType);
+                break;
+        }
+        return result;
+    }
+
     public FilesRepository getRepository() {
         return repository;
     }

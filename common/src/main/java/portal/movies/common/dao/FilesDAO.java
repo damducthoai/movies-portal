@@ -14,4 +14,14 @@ public interface FilesDAO {
     FilesEntity findFileById(long id);
 
     List<FilesEntity> findAllFiles();
+
+    /**
+     * paging support
+     *
+     * @param pageNum  page number
+     * @param pageSize number of item per return
+     * @param fileType 0: all, other view Files.class
+     * @return list of files
+     */
+    List<FilesEntity> getFiles(long pageNum, long pageSize, int fileType);
 }

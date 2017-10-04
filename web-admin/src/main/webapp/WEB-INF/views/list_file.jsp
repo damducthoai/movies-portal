@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>List file</title>
@@ -16,6 +17,7 @@
     <c:forEach items="${files}" var="file">
         <li>
             <h3>${file.fileTitle}</h3>
+            <input type="hidden" value="${file.fileId}"/>
             <p>${file.fileDescription}</p>
             <a href="${file.hostAddr}">Direct link</a>
         </li>

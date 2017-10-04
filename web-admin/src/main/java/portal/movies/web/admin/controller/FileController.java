@@ -27,7 +27,7 @@ public class FileController {
     @Autowired
     IBiz biz;
 
-    @GetMapping()
+    @GetMapping(path = "new")
     String getUploadUI(Model model) {
         FilesEntity fileEntity = new FilesEntity();
         model.addAttribute("file", fileEntity);
@@ -35,9 +35,11 @@ public class FileController {
         return "upload_ui";
     }
 
-    @GetMapping(value = "page-{num}")
-    String getFiles(Model model, @PathVariable("num") long num) {
-        List<FilesEntity> files = biz.findAllFiles();
+    @GetMapping()
+    String getFiles(Model model, @RequestParam(name = "page", defaultValue = "1") long page,
+                    @RequestParam(name = "size", defaultValue = "20") long size,
+                    @RequestParam(name = "type", defaultValue = "0") int type) {
+        List<FilesEntity> files = biz.getFiles(page, size, type);
         model.addAttribute("files", files);
         return "list_file";
     }
